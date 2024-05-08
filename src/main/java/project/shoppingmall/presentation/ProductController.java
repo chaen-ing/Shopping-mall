@@ -21,8 +21,8 @@ public class ProductController {
 
 
     @RequestMapping(value = "/products", method = RequestMethod.POST)
-    public Product createProduct(@RequestBody Product product){
+    public ProductDto createProduct(@RequestBody ProductDto productDto){
         // Product를 생성하고 리스트에 넣는 작업 필요
-        return simpleProductService.add(product);
+        return simpleProductService.add(productDto);
     }
 }
