@@ -36,4 +36,13 @@ public class ListProductRepository {
                 .filter(product -> product.containsName(name))
                 .toList();
     }
+
+    public Product update(Product product){
+        Integer indexToModify = products.indexOf(product);
+        // 매개변수로 받은 인스턴스와 동일한 인스턴스의 인덱스 반환
+        // 이때 판단 기준 equals 메서드이므로 오버라이딩
+
+        products.set(indexToModify, product);   // product를 통째로 변경
+        return product;
+    }
 }
