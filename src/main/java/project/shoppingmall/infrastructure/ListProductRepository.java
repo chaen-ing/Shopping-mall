@@ -45,4 +45,9 @@ public class ListProductRepository {
         products.set(indexToModify, product);   // product를 통째로 변경
         return product;
     }
+
+    public void delete(Long id){
+        Product product = this.findById(id);    // 조회에서 사용한 위의 findById 재사용
+        products.remove(product);
+    }
 }

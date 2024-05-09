@@ -50,4 +50,11 @@ public class ProductController {
         return simpleProductService.update(productDto);
     }
 
+    // 삭제
+    @RequestMapping(value="/products/{id}", method = RequestMethod.DELETE)
+    public void deleteProduct(@PathVariable Long id){
+        simpleProductService.delete(id);
+    }
+
+
 }

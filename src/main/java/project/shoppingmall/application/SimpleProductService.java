@@ -61,11 +61,17 @@ public class SimpleProductService {
         return productDtos;
     }
 
+    // 상품 수정
     public ProductDto update(ProductDto productDto){
         Product product = modelMapper.map(productDto, Product.class);
         Product updatedProduct = listProductRepository.update(product);
         ProductDto updatedProductDto = modelMapper.map(updatedProduct, ProductDto.class);
         return updatedProductDto;
+    }
+
+    // 상품 삭제
+    public void delete(Long id){
+        listProductRepository.delete(id);
     }
 
 }
