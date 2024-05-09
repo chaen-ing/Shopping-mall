@@ -19,8 +19,7 @@ public class ShoppingmallApplication {
 		modelMapper.getConfiguration()
 				.setFieldAccessLevel(Configuration.AccessLevel.PRIVATE)
 				.setFieldMatchingEnabled(true);
-		return new ModelMapper();
-
+		return modelMapper;
 	}
 
 }

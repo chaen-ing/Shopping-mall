@@ -9,4 +9,12 @@ public class Product {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Boolean sameId(Long id){
+        return this.id.equals(id);  // id값 비교해서 같으면 true 리턴
+    }
+
+    public Boolean containsName(String name){
+        return this.name.contains(name);
+    }
 }

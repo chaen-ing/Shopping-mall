@@ -1,12 +1,11 @@
 package project.shoppingmall.presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.shoppingmall.application.SimpleProductService;
 import project.shoppingmall.domain.Product;
+
+import java.util.List;
 
 @RestController
 public class ProductController {
@@ -25,4 +24,21 @@ public class ProductController {
         // Product를 생성하고 리스트에 넣는 작업 필요
         return simpleProductService.add(productDto);
     }
+
+    // 조회 - id
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
+    public ProductDto findProductById(@PathVariable Long id){
+        return simpleProductService.findById(id);
+    }
+
+    // 조회 - 전체, 이름
+    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    public List<ProductDto> findProduct(@RequestParam(required = false) String name)
+    {
+        if(null == name)
+            return simpleProductService.findAll();
+
+        return simpleProductService.findByNameContaining(name);
+    }
+
 }

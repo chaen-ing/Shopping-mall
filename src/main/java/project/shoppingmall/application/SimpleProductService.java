@@ -7,6 +7,8 @@ import project.shoppingmall.domain.Product;
 import project.shoppingmall.infrastructure.ListProductRepository;
 import project.shoppingmall.presentation.ProductDto;
 
+import java.util.List;
+
 @Service
 public class SimpleProductService {
 
@@ -19,6 +21,7 @@ public class SimpleProductService {
         this.modelMapper = modelMapper;
     }
 
+    // 상품 추가
     public ProductDto add(ProductDto productDto){
         // 1. ProductDto를 Product로 변환
         Product product = modelMapper.map(productDto, Product.class);
@@ -32,4 +35,30 @@ public class SimpleProductService {
         // 4. DTO를 반환
         return savedProductDto;
     }
+
+    // 상품 조회 - id
+    public ProductDto findById(Long id){
+        Product product = listProductRepository.findById(id);
+        ProductDto productDto = modelMapper.map(product, ProductDto.class);
+        return productDto;
+    }
+
+    // 상품 조회 - 전체
+    public List<ProductDto> findAll(){
+        List<Product> products = listProductRepository.findAll();
+        List<ProductDto> productDtos = products.stream()
+                .map(product -> modelMapper.map(product, ProductDto.class))
+                .toList();
+        return productDtos;
+    }
+
+    // 상품 조회 - 이름
+    public List<ProductDto> findByNameContaining(String name){
+        List<Product> products = listProductRepository.findByName(name);
+        List<ProductDto> productDtos = products.stream()
+                .map(product -> modelMapper.map(product, ProductDto.class))
+                .toList();
+        return productDtos;
+    }
+
 }
