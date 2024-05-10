@@ -1,5 +1,6 @@
 package project.shoppingmall.presentation;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import project.shoppingmall.application.SimpleProductService;
@@ -19,8 +20,9 @@ public class ProductController {
     }
 
 
+    // 추가
     @RequestMapping(value = "/products", method = RequestMethod.POST)
-    public ProductDto createProduct(@RequestBody ProductDto productDto){
+    public ProductDto createProduct(@Valid @RequestBody ProductDto productDto){
         // Product를 생성하고 리스트에 넣는 작업 필요
         return simpleProductService.add(productDto);
     }
