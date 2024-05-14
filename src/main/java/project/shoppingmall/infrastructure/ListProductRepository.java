@@ -1,6 +1,7 @@
 package project.shoppingmall.infrastructure;
 
 import org.springframework.stereotype.Repository;
+import project.shoppingmall.domain.EntityNotFoundException;
 import project.shoppingmall.domain.Product;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class ListProductRepository {
         return products.stream()
                 .filter(product -> product.sameId(id))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(()->new EntityNotFoundException("Product를 찾지 못했습니다."));
 
     }
 
