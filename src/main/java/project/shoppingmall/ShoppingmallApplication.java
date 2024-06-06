@@ -26,6 +26,12 @@ public class ShoppingmallApplication {
 		return modelMapper;
 	}
 
-
+	@Bean
+	public ApplicationRunner runner(DataSource dataSource){
+		return args -> {
+			// 실행 코드
+			Connection connection = dataSource.getConnection();
+		};
+	}
 
 }

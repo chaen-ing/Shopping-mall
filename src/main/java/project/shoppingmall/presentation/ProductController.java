@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import project.shoppingmall.application.SimpleProductService;
-import project.shoppingmall.domain.Product;
+import project.shoppingmall.domain.dto.ProductDto;
 
 import java.util.List;
 
@@ -46,9 +46,9 @@ public class ProductController {
     // 수정
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
     public ProductDto updateProduct(
-            @PathVariable Long id,
+            @PathVariable Long productId,
             @RequestBody ProductDto productDto){
-        productDto.setId(id);   // 클라이언트가 아이디 넣지 않았거나 잘못 입력한 경우 방지
+        productDto.setProductId(productId);   // 클라이언트가 아이디 넣지 않았거나 잘못 입력한 경우 방지
         return simpleProductService.update(productDto);
     }
 
