@@ -16,7 +16,7 @@ public class Order {
     private Long order_id;
 
     @Column(nullable = false)
-    private Integer total_price;
+    private Long total_price;
 
     @Column(nullable = false)
     private String address;
@@ -27,10 +27,11 @@ public class Order {
     @Column(nullable = false)
     private LocalDateTime localDateTime;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 

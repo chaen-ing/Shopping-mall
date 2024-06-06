@@ -18,13 +18,13 @@ public class Product {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private Integer price;
+    private Long price;
     @Column(nullable = false)
-    private Integer amount;
+    private Long amount;
     private String description;
 
     @Builder
-    public Product(String name, Integer price, Integer amount, String description) {
+    public Product(String name, Long price, Long amount, String description) {
         this.name = name;
         this.price = price;
         this.amount = amount;

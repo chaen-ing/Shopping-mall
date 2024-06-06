@@ -22,7 +22,7 @@ public class User {
     private String phone_number;
     @Column
     private String address;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="cart_id")
     private Cart cart;
 

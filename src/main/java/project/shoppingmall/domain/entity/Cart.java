@@ -14,6 +14,6 @@ public class Cart {
     private Long cart_id;
 
     @Column(nullable = false)
-    private Integer total_price;
+    private Long total_price;
 
 }
