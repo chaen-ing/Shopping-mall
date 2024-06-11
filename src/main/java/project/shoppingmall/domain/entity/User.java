@@ -1,6 +1,7 @@
 package project.shoppingmall.domain.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,24 +12,25 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="users")
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String user_id;
-    @Column(nullable = false)
+    @NotNull
     private String password;
-    @Column(nullable = false)
+    @NotNull
     private String name;
-    @Column
     private String phone_number;
-    @Column
     private String address;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="cart_id")
     private Cart cart;
 
     @Builder
-    public User(String password, String name) {
+    public User(String password, String name, String phone_number, String address, Cart cart) {
         this.password = password;
         this.name = name;
+        this.phone_number = phone_number;
+        this.address = address;
+        this.cart = cart;
     }
 }

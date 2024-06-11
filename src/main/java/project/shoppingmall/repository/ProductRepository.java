@@ -1,9 +1,13 @@
-package project.shoppingmall.Repository;
+package project.shoppingmall.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import project.shoppingmall.domain.entity.Product;
 
+import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
+    List<Product> findByNameContaining(String name);
 }

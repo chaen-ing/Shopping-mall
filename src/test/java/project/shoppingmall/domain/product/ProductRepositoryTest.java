@@ -1,13 +1,13 @@
 package project.shoppingmall.domain.product;
 
-import org.junit.After;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
-import project.shoppingmall.Repository.ProductRepository;
+import project.shoppingmall.repository.ProductRepository;
 import project.shoppingmall.domain.entity.Product;
 
 import java.util.List;
@@ -17,10 +17,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductRepositoryTest {
+    @LocalServerPort
+    private int port;
+
+
+
     @Autowired
     ProductRepository productRepository;
 
-    @AfterEach
+    @BeforeEach
     void cleanup(){
         productRepository.deleteAll();
     }
@@ -30,8 +35,9 @@ public class ProductRepositoryTest {
         // given : 주어진 조건
         Product product1 = Product.builder()
                 .name("연필")
-                .amount(200)
-                .price(1000).build();
+                .amount(100L)
+                .price(1000L)
+                        .build();
 
         productRepository.save(product1);
 
@@ -42,4 +48,6 @@ public class ProductRepositoryTest {
         Product product = all.get(0);
         assertThat(product.getAmount()).isEqualTo(product1.getAmount());
     }
+
+
 }

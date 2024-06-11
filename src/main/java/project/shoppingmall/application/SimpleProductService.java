@@ -1,16 +1,10 @@
 package project.shoppingmall.application;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import project.shoppingmall.domain.entity.Product;
-import project.shoppingmall.Repository.DatabaseProductRepository;
-import project.shoppingmall.domain.dto.ProductDto;
-
-import java.util.List;
 
 @Service
 public class SimpleProductService {
+    /*
 
     // DI
     private final DatabaseProductRepository databaseProductRepository;
@@ -25,7 +19,7 @@ public class SimpleProductService {
     }
 
     // 상품 추가
-    public ProductDto add(ProductDto productDto){
+    public ProductSaveRequestDto add(ProductSaveRequestDto productDto){
         // 1. ProductDto를 Product로 변환
         Product product = modelMapper.map(productDto, Product.class);
         validationService.checkValid(product);  // 유효성 검사
@@ -34,42 +28,42 @@ public class SimpleProductService {
         Product savedProduct = databaseProductRepository.add(product);
 
         // 3. product를 ProductDto로 변환
-        ProductDto savedProductDto = modelMapper.map(product, ProductDto.class);
+        ProductSaveRequestDto savedProductDto = modelMapper.map(product, ProductSaveRequestDto.class);
 
         // 4. DTO를 반환
         return savedProductDto;
     }
 
     // 상품 조회 - id
-    public ProductDto findById(Long productId){
+    public ProductSaveRequestDto findById(Long productId){
         Product product = databaseProductRepository.findById(productId);
-        ProductDto productDto = modelMapper.map(product, ProductDto.class);
+        ProductSaveRequestDto productDto = modelMapper.map(product, ProductSaveRequestDto.class);
         return productDto;
     }
 
     // 상품 조회 - 전체
-    public List<ProductDto> findAll(){
+    public List<ProductSaveRequestDto> findAll(){
         List<Product> products = databaseProductRepository.findAll();
-        List<ProductDto> productDtos = products.stream()
-                .map(product -> modelMapper.map(product, ProductDto.class))
+        List<ProductSaveRequestDto> productDtos = products.stream()
+                .map(product -> modelMapper.map(product, ProductSaveRequestDto.class))
                 .toList();
         return productDtos;
     }
 
     // 상품 조회 - 이름
-    public List<ProductDto> findByNameContaining(String productName){
+    public List<ProductSaveRequestDto> findByNameContaining(String productName){
         List<Product> products = databaseProductRepository.findByName(productName);
-        List<ProductDto> productDtos = products.stream()
-                .map(product -> modelMapper.map(product, ProductDto.class))
+        List<ProductSaveRequestDto> productDtos = products.stream()
+                .map(product -> modelMapper.map(product, ProductSaveRequestDto.class))
                 .toList();
         return productDtos;
     }
 
     // 상품 수정
-    public ProductDto update(ProductDto productDto){
+    public ProductSaveRequestDto update(ProductSaveRequestDto productDto){
         Product product = modelMapper.map(productDto, Product.class);
         Product updatedProduct = databaseProductRepository.update(product);
-        ProductDto updatedProductDto = modelMapper.map(updatedProduct, ProductDto.class);
+        ProductSaveRequestDto updatedProductDto = modelMapper.map(updatedProduct, ProductSaveRequestDto.class);
         return updatedProductDto;
     }
 
@@ -77,5 +71,5 @@ public class SimpleProductService {
     public void delete(Long productId){
         databaseProductRepository.delete(productId);
     }
-
+*/
 }

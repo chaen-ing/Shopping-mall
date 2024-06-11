@@ -1,38 +1,52 @@
 package project.shoppingmall.domain.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
+@Table(name="orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order_id;
 
-    @Column(nullable = false)
+    @NotNull
     private Long total_price;
 
-    @Column(nullable = false)
+    @NotNull
     private String address;
 
-    @Column(nullable = false)
+    @NotNull
     private String phone_number;
 
-    @Column(nullable = false)
-    private LocalDateTime localDateTime;
+    @CreatedDate @NotNull
+    private LocalDate order_date;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @NotNull
     private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Builder
+    public Order(Long total_price, String address, String phone_number, LocalDate order_date, Status status, User user) {
+        this.total_price = total_price;
+        this.address = address;
+        this.phone_number = phone_number;
+        this.order_date = order_date;
+        this.status = status;
+        this.user = user;
+    }
 }
