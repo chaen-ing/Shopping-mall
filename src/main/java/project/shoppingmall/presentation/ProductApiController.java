@@ -1,7 +1,6 @@
 package project.shoppingmall.presentation;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController // HTTP response body에 객체데이터를 JSON 형식으로 변환
-public class ProductController {
+public class ProductApiController {
 
     private final ProductService productService;
 
