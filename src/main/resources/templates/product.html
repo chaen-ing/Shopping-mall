@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 상세</title>
+  <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="p-5 mb-5 text-center</> bg-light">
+  <h1 class="mb-3">Shoppingmall</h1>
+  <h4 class="mb-3">welcome to our homepage!</h4>
+</div>
+
+<div class = "container mt-5">
+  <div class="row">
+    <div class = "col-lg-8">
+      <product>
+        <input type="hidden" id="product-id" th:value="${product.product_id}">
+        <header class = "mb-4">
+          <h1 class="fw-bolder mb-1" th:text="${product.name}"></h1>
+        </header>
+        <section class="mb-5">
+          <p class="fs-5 mb-4" th:text="'가격 : ' + ${product.price}"></p>
+          <p class="fs-5 mb-4" th:text="'수량 : ' + ${product.amount}"></p>
+          <p class="fs-5 mb-4" th:if="${product.description} != null" th:text="'설명 : ' + ${product.description}"></p>
+        </section>
+        <button type="button" id = "modify-btn" th:onclick="|location.href = '@{/new-product?id={productId}(productId=${product.product_id})}'|"
+          class = "btn btn-primary btn-sm">수정</button>
+        <button type="button" id="delete-btn" class="btn btn-secondary btn-sm">삭제</button>
+      </product>
+    </div>
+    </div>
+  </div>
+<script src="/js/product.js"></script>
+</body>
+</html>
