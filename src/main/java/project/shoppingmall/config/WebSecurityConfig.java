@@ -34,7 +34,7 @@ public class WebSecurityConfig {
     @Bean   // 특정 http 요청에 대해 웹 기반 보안 구성
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(auth-> auth
-                        .requestMatchers("/login", "/signup", "/products","/user").permitAll()
+                        .requestMatchers("/login", "/signup", "/products","/user","/products/id/**").permitAll()
 //                        .requestMatchers("/cart", "/user/**").hasAuthority("USER")
                         .requestMatchers("/new-product").hasAuthority("ADMIN")
                         .anyRequest().authenticated())
@@ -43,7 +43,7 @@ public class WebSecurityConfig {
                         .defaultSuccessUrl("/products",true)    // 성공 시 이동
                         .permitAll())
                 .logout(logout -> logout    // 로그아웃
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/products")
                         .invalidateHttpSession(true)
                         .permitAll())
                 .csrf(AbstractHttpConfigurer::disable);  // CSRF 비활성화

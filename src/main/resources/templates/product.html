@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>상품 상세</title>
@@ -24,9 +24,12 @@
           <p class="fs-5 mb-4" th:text="'수량 : ' + ${product.amount}"></p>
           <p class="fs-5 mb-4" th:if="${product.description} != null" th:text="'설명 : ' + ${product.description}"></p>
         </section>
-        <button type="button" id = "modify-btn" th:onclick="|location.href = '@{/new-product?id={productId}(productId=${product.product_id})}'|"
-          class = "btn btn-primary btn-sm">수정</button>
-        <button type="button" id="delete-btn" class="btn btn-secondary btn-sm">삭제</button>
+
+        <div sec:authorize="hasAuthority('ADMIN')">
+          <button type="button" id = "modify-btn" th:onclick="|location.href = '@{/new-product?id={productId}(productId=${product.product_id})}'|"
+                  class = "btn btn-primary btn-sm">수정</button>
+          <button type="button" id="delete-btn" class="btn btn-secondary btn-sm">삭제</button>
+        </div>
       </product>
     </div>
     </div>
