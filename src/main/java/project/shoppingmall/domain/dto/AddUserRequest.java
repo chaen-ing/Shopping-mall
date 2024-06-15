@@ -23,5 +23,5 @@ public class AddUserRequest {
 
     private Cart cart;
 
-    private RoleType roleType;
+    private String roleType;
 }

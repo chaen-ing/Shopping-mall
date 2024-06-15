@@ -31,8 +31,7 @@ public class User implements UserDetails {
     private String password;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
+    private String roleType;
 
     @Column(nullable = false)
     private String name;
@@ -46,7 +45,7 @@ public class User implements UserDetails {
     private Cart cart;
 
     @Builder
-    public User(String email, String password, String name, String phone_number, String address, Cart cart, RoleType roleType, String auth) {
+    public User(String email, String password, String name, String phone_number, String address, Cart cart, String roleType, String auth) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -56,9 +55,9 @@ public class User implements UserDetails {
         this.roleType = roleType;
     }
 
-    @Override   //  사용자의 권한 목록 반환
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(roleType.getAuthority()));
+        return List.of(new SimpleGrantedAuthority(roleType));
     }
 
     @Override // 사용자의 이메일 반환(고유한 값)

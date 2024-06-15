@@ -35,8 +35,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(auth-> auth
                         .requestMatchers("/login", "/signup", "/products","/user").permitAll()
-//                        .requestMatchers("/cart", "/user/**").hasRole("USER")
-                        .requestMatchers("/new-product").hasRole("ADMIN")
+//                        .requestMatchers("/cart", "/user/**").hasAuthority("USER")
+                        .requestMatchers("/new-product").hasAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin   // 폼 기반 로그인
                         .loginPage("/login")    // 경로
