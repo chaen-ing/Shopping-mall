@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import project.shoppingmall.domain.entity.Cart;
+import project.shoppingmall.domain.entity.RoleType;
 
 @Getter
 @Setter
@@ -21,4 +22,6 @@ public class AddUserRequest {
     private String address;
 
     private Cart cart;
+
+    private RoleType roleType;
 }

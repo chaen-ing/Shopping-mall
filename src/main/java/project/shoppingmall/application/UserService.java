@@ -21,6 +21,7 @@ public class UserService {
                 .phone_number(dto.getPhone_number())
                 .address(dto.getAddress())
                 .cart(dto.getCart())
+                .roleType(dto.getRoleType())
                 .build()).getId();
 
     }

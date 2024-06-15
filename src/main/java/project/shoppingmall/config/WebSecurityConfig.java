@@ -33,21 +33,22 @@ public class WebSecurityConfig {
 
     @Bean   // 특정 http 요청에 대해 웹 기반 보안 구성
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        return http.authorizeRequests(auth -> auth
-                .requestMatchers(
-                        new AntPathRequestMatcher("/login"),
-                        new AntPathRequestMatcher("/signup"),
-                        new AntPathRequestMatcher("/user")
-                ).permitAll()   // 위 경로에 대해 인증, 인가 없이 누구나 접근 가능
-                .anyRequest().authenticated())  // 이외의 요청은 인증 성공해야 접근 가능
+        http.authorizeHttpRequests(auth-> auth
+                        .requestMatchers("/login", "/signup", "/products","/user").permitAll()
+//                        .requestMatchers("/cart", "/user/**").hasRole("USER")
+                        .requestMatchers("/new-product").hasRole("ADMIN")
+                        .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin   // 폼 기반 로그인
                         .loginPage("/login")    // 경로
-                        .defaultSuccessUrl("/products"))    // 성공 시 이동
+                        .defaultSuccessUrl("/products",true)    // 성공 시 이동
+                        .permitAll())
                 .logout(logout -> logout    // 로그아웃
                         .logoutSuccessUrl("/login")
-                        .invalidateHttpSession(true))
-                .csrf(AbstractHttpConfigurer::disable)  // CSRF 비활성화
-                .build();
+                        .invalidateHttpSession(true)
+                        .permitAll())
+                .csrf(AbstractHttpConfigurer::disable);  // CSRF 비활성화
+
+        return http.build();
     }
 
     @Bean   // 패스워드 인코더로 사용할 빈 등록
