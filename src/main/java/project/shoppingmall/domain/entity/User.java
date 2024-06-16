@@ -40,18 +40,13 @@ public class User implements UserDetails {
 
     private String address;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="cart_id")
-    private Cart cart;
-
     @Builder
-    public User(String email, String password, String name, String phone_number, String address, Cart cart, String roleType, String auth) {
+    public User(String email, String password, String name, String phone_number, String address, User user, String roleType, String auth) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.phone_number = phone_number;
         this.address = address;
-        this.cart = cart;
         this.roleType = roleType;
     }
 

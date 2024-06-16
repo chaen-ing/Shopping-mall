@@ -1,9 +1,13 @@
 package project.shoppingmall.application;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import project.shoppingmall.domain.dto.AddUserRequest;
+import project.shoppingmall.domain.dto.UpdateProductRequest;
+import project.shoppingmall.domain.entity.Product;
 import project.shoppingmall.domain.entity.User;
 import project.shoppingmall.repository.UserRepository;
 
@@ -20,9 +24,16 @@ public class UserService {
                 .name(dto.getName())
                 .phone_number(dto.getPhone_number())
                 .address(dto.getAddress())
-                .cart(dto.getCart())
                 .roleType(dto.getRoleType())
                 .build()).getId();
 
     }
+
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email)
+                .orElseThrow(()->new IllegalArgumentException("not found : " + email));
+    }
+
+
+
 }
