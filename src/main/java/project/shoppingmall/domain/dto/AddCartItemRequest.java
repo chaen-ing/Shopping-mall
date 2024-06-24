@@ -24,4 +24,10 @@ public class AddCartItemRequest {
                 .build();
     }
 
+    public AddCartItemRequest addAmount(Long amount){
+        this.amount += amount;
+
+        return this;
+    }
+
 }

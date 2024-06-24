@@ -37,9 +37,6 @@ public class CartItem {
         this.amount = amount;
     }
 
-    public CartItem addAmount(CartItem cartItem, Long amount){
-        cartItem.amount += amount;
-        return cartItem;
-    }
+
 
 }
