@@ -7,13 +7,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Entity
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false)
     private Long cartItem_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,14 +27,14 @@ public class CartItem {
     @JoinColumn(name="product_id")
     private Product product;
 
-    @ColumnDefault("0")
-    private Long amount;
+    @Column(nullable = false)
+    private long amount;
 
     @Builder
     public CartItem(User user, Product product, Long amount) {
         this.user = user;
         this.product = product;
-        this.amount += amount;
+        this.amount = amount;
     }
 
     public CartItem addAmount(CartItem cartItem, Long amount){

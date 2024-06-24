@@ -40,6 +40,9 @@ public class User implements UserDetails {
 
     private String address;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<CartItem> cartItems;
+
     @Builder
     public User(String email, String password, String name, String phone_number, String address, User user, String roleType, String auth) {
         this.email = email;

@@ -70,19 +70,20 @@ const cartButton = document.getElementById('cart-btn');
 
 if(cartButton){
     cartButton.addEventListener("click", (event) =>{
+        let productId = document.getElementById('product-id').value;
+
         fetch("/api/cart",{
             method : "POST",
             headers : {
                 "Content-Type" : "application/json",
             },
             body : JSON.stringify({
-                cartId: document.getElementById('cart-id').value,
-                productId:document.getElementById('product-id').value,
-                amount : document.getElementById('amount').value
+                productId: productId,
+                amount: document.getElementById('amount').value
             }),
         }).then(() => {
-            alert('추가 완료.');
-            location.replace(`/products/id/{id}`)
+            alert('장바구니에 담았습니다.');
+            location.replace(`/products/id/`+productId);
         });
     });
 }

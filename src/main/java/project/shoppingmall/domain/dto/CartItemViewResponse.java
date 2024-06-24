@@ -1,19 +1,14 @@
 package project.shoppingmall.domain.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import project.shoppingmall.domain.entity.CartItem;
+import project.shoppingmall.domain.entity.User;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
+import java.util.List;
+
 public class CartItemViewResponse {
-    private Long id;
-    private Long amount;
+    private List<CartItem> cartItems;
 
-    public CartItemViewResponse(CartItem cartItem) {
-        this.id = cartItem.getCartItem_id();
-        this.amount = cartItem.getAmount();
+    public CartItemViewResponse(User user){
+        this.cartItems = user.getCartItems();
     }
 }

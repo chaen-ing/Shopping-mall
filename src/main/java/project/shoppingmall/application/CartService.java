@@ -25,7 +25,7 @@ public class CartService {
     private final UserRepository userRepository;
 
     @Transactional
-    public CartItem addCart(AddCartItemRequest request, String userEmail){
+    public CartItem addCartItem(AddCartItemRequest request, String userEmail){
         // 상품 찾기
         Product product = productRepository.findById(request.getProductId())
                 .orElseThrow(()->new IllegalArgumentException("not found : "+ request.getProductId()));
@@ -33,13 +33,8 @@ public class CartService {
         // 인증정보 바탕으로 사용자 찾기
         User user = userRepository.findByEmail(userEmail).get();
 
-        CartItem cartItem = cartItemRepository.findByUserAndProduct(user, product).get();
-
-        if(cartItem == null){
-            return cartItemRepository.save(request.toEntity(user, product));
-        }else{  // 장바구니에 이미 존재하는 상품
-           return cartItem.addAmount(cartItem, request.getAmount());
-        }
+        return cartItemRepository.save(request.toEntity(user, product));
+        // null일때랑 이미 존재할때 구분해야함
 
     }
 
