@@ -34,8 +34,8 @@ public class WebSecurityConfig {
     @Bean   // 특정 http 요청에 대해 웹 기반 보안 구성
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(auth-> auth
-                        .requestMatchers("/login", "/signup", "/products","/user","/products/id/**").permitAll()
-                        .requestMatchers("/carts", "/user/**", "/carts/**").hasAnyAuthority("USER","ADMIN")
+                        .requestMatchers("/login", "/signup", "/products","/products/id/**").permitAll()
+                        .requestMatchers("/user", "/user/**").hasAnyAuthority("USER","ADMIN")
                         .requestMatchers("/new-product").hasAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin   // 폼 기반 로그인

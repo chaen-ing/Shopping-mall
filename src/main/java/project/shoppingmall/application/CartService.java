@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import project.shoppingmall.domain.dto.AddCartItemRequest;
+import project.shoppingmall.domain.dto.CartItemViewResponse;
 import project.shoppingmall.domain.entity.CartItem;
 import project.shoppingmall.domain.entity.Product;
 import project.shoppingmall.domain.entity.User;
@@ -44,16 +45,12 @@ public class CartService {
         }else{
             return cartItemRepository.save(request.toEntity(user, product));
         }
-
-
     }
 
-    public List<CartItem> findAll(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userEmail = authentication.getName();
+    public List<CartItemViewResponse> findByUser(String userEmail){
         User user = userRepository.findByEmail(userEmail).get();
 
-        return cartItemRepository.findByUser(user);
+        return cartItemRepository.findByUser(user.getId());
     }
 
 }

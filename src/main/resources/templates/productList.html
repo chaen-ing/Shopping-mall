@@ -11,19 +11,21 @@
         <h4 class="mb-3">welcome to our homepage!</h4>
         <h4 th:text="${#authentication.name}"></h4>
     </div>
-    <div sec:authorize="hasAuthority('USER')">
-        <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
-        <!--            <button type="button" class="btn btn-secondary" onclick="location.href='/cart'">장바구니</button>-->
-        <!--            <button type="button" class="btn btn-secondary" onclick="location.href='/userinfo'">회원정보</button>-->
-    </div>
-    <div sec:authorize="hasAuthority('ADMIN')">
-        <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
-        <button type="button" id ="create-btn" th:onclick="|location.href='@{/new-product}'|" class="btn btn-secondary btn-sm mb-3">상품 등록</button>
-    </div>
+    <div>
+        <div sec:authorize="isAuthenticated()">
+            <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
+            <button type="button" class="btn btn-secondary" onclick="location.href='/user/cart'">장바구니</button>
+            <!--        <button type="button" class="btn btn-secondary" onclick="location.href='/userinfo'">회원정보</button>-->
+        </div>
 
-    <div sec:authorize="!isAuthenticated()">
-        <button type="button" class="btn btn-secondary" onclick="location.href='/login'">로그인</button>
-        <button type="button" class="btn btn-secondary" onclick="location.href='/signup'">회원가입</button>
+        <div sec:authorize="hasAuthority('ADMIN')">
+            <button type="button" id ="create-btn" th:onclick="|location.href='@{/new-product}'|" class="btn btn-secondary btn-sm mb-3">상품 등록</button>
+        </div>
+
+        <div sec:authorize="!isAuthenticated()">
+            <button type="button" class="btn btn-secondary" onclick="location.href='/login'">로그인</button>
+            <button type="button" class="btn btn-secondary" onclick="location.href='/signup'">회원가입</button>
+        </div>
     </div>
     <div class = "container">
         <div class="row-6" th:each="item : ${products}">

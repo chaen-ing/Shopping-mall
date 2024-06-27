@@ -11,19 +11,29 @@
   <h4 class="mb-3">welcome to our homepage!</h4>
   <h4 th:text="${#authentication.name}"></h4>
 </div>
-<div class = "container">
-  <div class="row-6" th:each="item : ${cartItems}">
-    <div class = "card">
-      <div class = "card-header" th:text="${item.getAmount()}"></div>
-<!--      <div class = "card-body">-->
-<!--        <h5 class="card-title" th:text="${item.name}"></h5>-->
-<!--        <p class="card-text" th:text="${item.price}"></p>-->
-<!--        <p class="card-text" th:text="${item.description}"></p>-->
-<!--        <a th:href ="@{/products/id/{id}(id=${item.product_id})}" class="btn btn-primary">보러 가기</a>-->
-<!--      </div>-->
-    </div>
-  </div>
+
+<div class="container">
+  <h2>장바구니</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">상품 이름</th>
+      <th scope="col">가격</th>
+      <th scope="col">수량</th>
+      <th scope="col">총 가격</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${cartItems}">
+      <td th:text="${item.productName}">상품 이름</td>
+      <td th:text="${item.productPrice}">가격</td>
+      <td th:text="${item.amount}">수량</td>
+      <td th:text="${item.productPrice * item.amount}">총 가격</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
+
 <script src = "/js.product.js"></script>
 </body>
 </html>
