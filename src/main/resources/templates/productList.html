@@ -6,11 +6,7 @@
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="p-5 mb-5 text-center</> bg-light">
-        <h1 class="mb-3">Shoppingmall</h1>
-        <h4 class="mb-3">welcome to our homepage!</h4>
-        <h4 th:text="${#authentication.name}"></h4>
-    </div>
+<div th:replace="~{header :: fragment}"></div>
     <div>
         <div sec:authorize="isAuthenticated()">
             <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
