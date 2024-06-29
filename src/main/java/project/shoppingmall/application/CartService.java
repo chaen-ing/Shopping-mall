@@ -49,8 +49,11 @@ public class CartService {
 
     public List<CartItemViewResponse> findByUser(String userEmail){
         User user = userRepository.findByEmail(userEmail).get();
-
         return cartItemRepository.findByUser(user.getId());
+    }
+
+    public void deleteCartItem(Long cartItemId){
+        cartItemRepository.deleteById(cartItemId);
     }
 
 }

@@ -24,28 +24,25 @@
           <p class="fs-5 mb-4" th:text="'수량 : ' + ${product.amount}"></p>
           <p class="fs-5 mb-4" th:if="${product.description} != null" th:text="'설명 : ' + ${product.description}"></p>
         </section>
-
         <div sec:authorize="hasAuthority('ADMIN')">
           <button type="button" id = "modify-btn" th:onclick="|location.href = '@{/new-product?id={productId}(productId=${product.product_id})}'|"
                   class = "btn btn-primary btn-sm">수정</button>
           <button type="button" id="delete-btn" class="btn btn-secondary btn-sm">삭제</button>
         </div>
-
         <section sec:authorize="hasAnyAuthority('ADMIN','USER')">
           <div class="d-flex">
             <input class="form-control text-center me-3" id="amount" type="number" value="1" style="max-width: 3rem"/>
-            <button class="btn btn-outline-dark flex-shrink-0" id="cart-btn" type="button">
+            <button class="btn btn-outline-dark flex-shrink-0" id="cart-add-btn" type="button">
               <i class="bi-cart-fill me-1"></i>
               장바구니
             </button>
           </div>
         </section>
-
-
       </product>
     </div>
     </div>
   </div>
 <script src="/js/product.js"></script>
+<script src="/js/cart.js"></script>
 </body>
 </html>

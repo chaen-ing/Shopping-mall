@@ -27,4 +27,12 @@ public class CartApiController {
                 .body(new AddCartItemResponse(savedCartItem));
 
     }
+
+    @DeleteMapping("/api/cart/delete/{id}")
+    public ResponseEntity<Void> deleteCartItem(@PathVariable("id") Long cartItemId){
+        cartService.deleteCartItem(cartItemId);
+
+        return ResponseEntity.ok().build();
+    }
+
 }

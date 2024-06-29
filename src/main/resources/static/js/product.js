@@ -65,25 +65,3 @@ if(createButton){
     });
 }
 
-// 장바구니 추가
-const cartButton = document.getElementById('cart-btn');
-
-if(cartButton){
-    cartButton.addEventListener("click", (event) =>{
-        let productId = document.getElementById('product-id').value;
-
-        fetch("/api/cart",{
-            method : "POST",
-            headers : {
-                "Content-Type" : "application/json",
-            },
-            body : JSON.stringify({
-                productId: productId,
-                amount: document.getElementById('amount').value
-            }),
-        }).then(() => {
-            alert('장바구니에 담았습니다.');
-            location.replace(`/products/id/`+productId);
-        });
-    });
-}

@@ -21,19 +21,25 @@
       <th scope="col">가격</th>
       <th scope="col">수량</th>
       <th scope="col">총 가격</th>
+      <th scope="col">삭제</th>
     </tr>
     </thead>
     <tbody>
+    <cart>
     <tr th:each="item : ${cartItems}">
+      <input type="hidden" id="product-id" th:value="${item.cartItemId}">
       <td th:text="${item.productName}">상품 이름</td>
       <td th:text="${item.productPrice}">가격</td>
       <td th:text="${item.amount}">수량</td>
       <td th:text="${item.productPrice * item.amount}">총 가격</td>
+      <td>
+         <button type="button" th:attr="data-id=${item.cartItemId}" class="btn btn-danger delete-btn">Delete</button>
+      </td>
     </tr>
+    </cart>
     </tbody>
   </table>
 </div>
-
-<script src = "/js.product.js"></script>
+<script src = "/js/cart.js"></script>
 </body>
 </html>
