@@ -11,11 +11,11 @@
         <div sec:authorize="isAuthenticated()">
             <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
             <button type="button" class="btn btn-secondary" onclick="location.href='/user/cart'">장바구니</button>
-            <!--        <button type="button" class="btn btn-secondary" onclick="location.href='/userinfo'">회원정보</button>-->
+            <button type="button" class="btn btn-secondary" onclick="location.href='/user/info'">회원정보</button>
         </div>
 
         <div sec:authorize="hasAuthority('ADMIN')">
-            <button type="button" id ="create-btn" th:onclick="|location.href='@{/new-product}'|" class="btn btn-secondary btn-sm mb-3">상품 등록</button>
+            <button type="button" id ="create-btn" th:onclick="|location.href='@{/new-product}'|" class="btn btn-secondary mb-3" style="margin-top: 10px;">상품 등록</button>
         </div>
 
         <div sec:authorize="!isAuthenticated()">

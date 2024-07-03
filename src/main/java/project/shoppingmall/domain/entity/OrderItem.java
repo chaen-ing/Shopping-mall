@@ -3,6 +3,7 @@ package project.shoppingmall.domain.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +25,13 @@ public class OrderItem {
 
     @NotNull
     private Long amount;
+
+    @Builder
+    public OrderItem(Order order, Product product, Long amount) {
+        this.order = order;
+        this.product = product;
+        this.amount = amount;
+    }
 
 
 }

@@ -22,21 +22,6 @@ if(cartAddButton){
 }
 
 // 장바구니 삭제
-// const cartDeleteButton = document.getElementById('cart-delete-btn');
-//
-// if(cartDeleteButton){
-//     cartDeleteButton.addEventListener('click', event => {
-//         let id = document.getElementById('cartItemId').value;
-//         fetch(`/api/cart/delete/${id}`,{
-//             method: 'DELETE'
-//         })
-//             .then(() => {
-//                 alert('삭제 완료.');
-//                 location.replace('/cart')
-//             });
-//
-//     });
-// }
 document.addEventListener('DOMContentLoaded', function () {
     const deleteButtons = document.querySelectorAll('.delete-btn');
 
@@ -51,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => {
                     if (response.ok) {
                         alert('삭제 완료.');
-                        location.reload();  // 현재 페이지를 새로고침하여 변경 사항을 반영합니다.
+                        location.reload();
                     } else {
                         console.error('Delete failed with status:', response.status);
                         alert('삭제 실패.');

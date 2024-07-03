@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface CartItemRepository extends JpaRepository<CartItem, Long> {
     Optional<CartItem> findByUserAndProduct (User user, Product product);
 
-    @Query("SELECT new project.shoppingmall.domain.dto.CartItemViewResponse(ci.cartItem_id, p.name, p.price, ci.amount) " +
+    @Query("SELECT new project.shoppingmall.domain.dto.CartItemViewResponse(ci.cartItem_id, p.name, p.product_id, p.price, ci.amount) " +
             "FROM CartItem ci JOIN ci.product p WHERE ci.user.id = :userId")
     List<CartItemViewResponse> findByUser(Long userId);
 

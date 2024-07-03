@@ -8,11 +8,11 @@ import project.shoppingmall.domain.entity.CartItem;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class AddCartItemResponse {
+public class CartItemResponse {
     private Long id;
     private Long amount;
 
-    public AddCartItemResponse(CartItem cartItem) {
+    public CartItemResponse(CartItem cartItem) {
         this.id = cartItem.getCartItem_id();
         this.amount = cartItem.getAmount();
     }

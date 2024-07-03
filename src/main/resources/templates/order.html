@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>주문하기</title>
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="~{header :: fragment}"></div>
+<div class = "container mt-5">
+    <div class="row">
+        <div class = "col-lg-8">
+<!--            <product>-->
+<!--                <input type="hidden" id="product-id" th:value="${product.product_id}">-->
+
+<!--                <header class = "mb-4">-->
+<!--                    <input type="text" class="form-control" placeholder="이름" id="name" th:value="${product.name}">-->
+<!--                </header>-->
+<!--                <section class="mb-5">-->
+<!--                    <textarea class = "form-control h-25" rows="10" placeholder="설명" id="description" th:text="${product.description}"></textarea>-->
+<!--                    <textarea class = "form-control h-25" rows="5" placeholder="가격" id="price" th:text="${product.price}"></textarea>-->
+<!--                    <textarea class = "form-control h-25" rows="5" placeholder="수량" id="amount" th:text="${product.amount}"></textarea>-->
+<!--                </section>-->
+<!--                <button th:if="${product.product_id} != null" type="button" id="modify-btn" class="btn btn-primary btn-sm">수정</button>-->
+<!--                <button th:if="${product.product_id} == null" type="button" id="create-btn" class="btn btn-primary btn-sm">등록</button>-->
+<!--            </product>-->
+        </div>
+    </div>
+</div>
+<script src="/js/order.js"></script>
+</body>
+</html>

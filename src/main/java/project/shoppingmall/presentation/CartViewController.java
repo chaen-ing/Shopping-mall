@@ -3,15 +3,11 @@ package project.shoppingmall.presentation;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import project.shoppingmall.application.CartService;
-import project.shoppingmall.domain.dto.AddCartItemResponse;
 import project.shoppingmall.domain.dto.CartItemViewResponse;
-import project.shoppingmall.domain.dto.ProductListViewResponse;
 
 import java.security.Principal;
 import java.util.List;
