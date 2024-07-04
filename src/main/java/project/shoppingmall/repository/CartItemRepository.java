@@ -2,6 +2,7 @@ package project.shoppingmall.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import project.shoppingmall.domain.dto.CartItemViewResponse;
 import project.shoppingmall.domain.entity.CartItem;
@@ -17,5 +18,10 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
     @Query("SELECT new project.shoppingmall.domain.dto.CartItemViewResponse(ci.cartItem_id, p.name, p.product_id, p.price, ci.amount) " +
             "FROM CartItem ci JOIN ci.product p WHERE ci.user.id = :userId")
     List<CartItemViewResponse> findByUser(Long userId);
+
+
+    @Modifying
+    @Query("DELETE FROM CartItem ci WHERE ci.user.id = :userId")
+    void deleteAllByUser(Long userId);
 
 }

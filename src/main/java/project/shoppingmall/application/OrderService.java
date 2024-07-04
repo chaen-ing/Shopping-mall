@@ -44,6 +44,7 @@ public class OrderService {
         }
         order.setTotal_price(totalPrice);
 
+        cartItemRepository.deleteAllByUser(user.getId());
         return order;
     }
 }

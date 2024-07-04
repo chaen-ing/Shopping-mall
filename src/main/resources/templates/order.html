@@ -3,29 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>주문하기</title>
-    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="~{header :: fragment}"></div>
-<div class = "container mt-5">
-    <div class="row">
-        <div class = "col-lg-8">
-<!--            <product>-->
-<!--                <input type="hidden" id="product-id" th:value="${product.product_id}">-->
-
-<!--                <header class = "mb-4">-->
-<!--                    <input type="text" class="form-control" placeholder="이름" id="name" th:value="${product.name}">-->
-<!--                </header>-->
-<!--                <section class="mb-5">-->
-<!--                    <textarea class = "form-control h-25" rows="10" placeholder="설명" id="description" th:text="${product.description}"></textarea>-->
-<!--                    <textarea class = "form-control h-25" rows="5" placeholder="가격" id="price" th:text="${product.price}"></textarea>-->
-<!--                    <textarea class = "form-control h-25" rows="5" placeholder="수량" id="amount" th:text="${product.amount}"></textarea>-->
-<!--                </section>-->
-<!--                <button th:if="${product.product_id} != null" type="button" id="modify-btn" class="btn btn-primary btn-sm">수정</button>-->
-<!--                <button th:if="${product.product_id} == null" type="button" id="create-btn" class="btn btn-primary btn-sm">등록</button>-->
-<!--            </product>-->
+<div class="container mt-5">
+    <h2>주문하기</h2>
+    <form id="order-form">
+        <div class="form-group">
+            <label for="address">배송지 주소</label>
+            <input type="text" class="form-control" id="address" placeholder="주소를 입력하세요">
         </div>
-    </div>
+        <div class="form-group">
+            <label for="phone_number">전화번호</label>
+            <input type="text" class="form-control" id="phone_number" placeholder="전화번호를 입력하세요">
+        </div>
+        <h3>주문 내역</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">상품 이름</th>
+                <th scope="col">가격</th>
+                <th scope="col">수량</th>
+                <th scope="col">총 가격</th>
+                <th scope="col">삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <cart>
+                <tr th:each="item : ${cartItems}">
+                    <input type="hidden" id="product-id" th:value="${item.cartItemId}">
+                    <td th:text="${item.productName}">상품 이름</td>
+                    <td th:text="${item.productPrice}">가격</td>
+                    <td th:text="${item.amount}">수량</td>
+                    <td th:text="${item.productPrice * item.amount}">총 가격</td>
+                    <td>
+                        <button type="button" th:attr="data-id=${item.cartItemId}" class="btn btn-danger delete-btn">Delete</button>
+                    </td>
+                </tr>
+            </cart>
+            </tbody>
+        </table>
+        <button id="order-btn" type="submit" class="btn btn-primary">주문하기</button>
+    </form>
 </div>
 <script src="/js/order.js"></script>
 </body>

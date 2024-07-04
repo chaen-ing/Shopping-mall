@@ -2,6 +2,9 @@ package project.shoppingmall.domain.dto;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import project.shoppingmall.domain.entity.Order;
 import project.shoppingmall.domain.entity.Status;
@@ -9,6 +12,9 @@ import project.shoppingmall.domain.entity.User;
 
 import java.time.LocalDate;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class OrderResponse {
 
     private Long order_id;

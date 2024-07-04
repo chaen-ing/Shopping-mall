@@ -35,7 +35,7 @@ public class CreateOrderRequest {
                 //.total_price(totalPrice)
                 .order_date(order_date)
                 .phone_number(phone_number)
-                .status(status)
+                .status(Status.주문완료)
                 .build();
     }
 }

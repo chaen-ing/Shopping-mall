@@ -1,34 +1,29 @@
-document.getElementById('order-btn').addEventListener('click', function() {
-    let cartItems = [];
-    document.querySelectorAll('tbody tr').forEach(row => {
-        cartItems.push({
-            id: row.querySelector('#cartItemId').value,
-            productId: row.querySelector('td:nth-child(1)').textContent,
-            quantity: row.querySelector('td:nth-child(3)').textContent
-        });
-    });
+const orderButton = document.getElementById('order-btn');
 
-    let orderData = {
-        userId: 1, // 사용자 ID를 적절히 설정
-        address: '배송 주소를 입력하세요',
-        phoneNumber: '연락처를 입력하세요',
-        cartItems: cartItems
-    };
-
-    fetch('/api/orders/create', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(orderData)
-    })
-        .then(response => response.json())
-        .then(data => {
-            alert('주문이 완료되었습니다. 주문번호: ' + data);
-            location.replace('/orders');
+if (orderButton) {
+    orderButton.addEventListener("click", (event) => {
+        fetch("/api/order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                address: document.getElementById('address').value,
+                phone_number: document.getElementById('phone_number').value
+            }),
         })
-        .catch(error => {
-            alert('주문에 실패했습니다.');
-            console.error('Error:', error);
-        });
-});
+            .then(response => {
+                if (response.ok) {
+                    alert('주문 완료.');
+                    location.replace(`/user/cart`);
+                } else {
+                    alert('주문 실패.');
+                    location.replace(`/user/cart`);
+                }
+            })
+            .catch(() => {
+                alert('네트워크 오류 또는 서버 문제로 주문을 처리할 수 없습니다.');
+                location.replace(`/user/cart`);
+            });
+    });
+}
