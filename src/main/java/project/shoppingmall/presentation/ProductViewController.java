@@ -51,4 +51,20 @@ public class ProductViewController {
 
         return "newProduct";
     }
+
+    @GetMapping("/products/{name}")
+    public String findProducts(Model model, @PathVariable String name){
+        List<ProductListViewResponse> products = productService.findByNameContaining(name).stream()
+                .map(ProductListViewResponse::new)
+                .toList();
+
+        model.addAttribute("products",products);    // "products" 키에 리스트 저장
+
+        return "productList";   // 뷰 반환
+    }
+
+    @GetMapping("/products/search")
+    public String searchProducts(@RequestParam String name) {
+        return "redirect:/products/" + name;
+    }
 }
