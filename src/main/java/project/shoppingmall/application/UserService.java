@@ -7,9 +7,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import project.shoppingmall.domain.dto.AddUserRequest;
 import project.shoppingmall.domain.dto.UpdateProductRequest;
+import project.shoppingmall.domain.dto.UpdateUserRequest;
 import project.shoppingmall.domain.entity.Product;
 import project.shoppingmall.domain.entity.User;
 import project.shoppingmall.repository.UserRepository;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -28,12 +31,23 @@ public class UserService {
                 .build()).getId();
 
     }
-
     public User findByEmail(String email){
         return userRepository.findByEmail(email)
                 .orElseThrow(()->new IllegalArgumentException("not found : " + email));
     }
 
+    public void deleteUser(String email){
+        userRepository.delete(findByEmail(email));
+    }
+
+    @Transactional
+    public User update(UpdateUserRequest request, String email){
+        User user = userRepository.findByEmail(email).get();
+
+        user.update(user.getId(), user.getEmail(), user.getPassword(), user.getRoleType(), request.getName(),request.getPhone_number(),request.getAddress());
+
+        return user;
+    }
 
 
 }
