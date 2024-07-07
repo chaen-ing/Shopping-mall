@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import project.shoppingmall.domain.dto.*;
 import project.shoppingmall.domain.entity.*;
 import project.shoppingmall.repository.*;
+import project.shoppingmall.exception.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -19,7 +21,7 @@ public class OrderService {
     private final OrderItemRepository orderItemRepository;
 
     @Transactional
-    public Order createOrder(CreateOrderRequest request, String userEmail){
+    public Order createOrder(CreateOrderRequest request, String userEmail) throws InsufficientStockException {
         // 인증정보 바탕으로 사용자 찾기
         User user = userRepository.findByEmail(userEmail).get();
 
@@ -32,6 +34,13 @@ public class OrderService {
         for(CartItemViewResponse cartItemViewResponse : cartItems){
             Product product = productRepository.findById(cartItemViewResponse.getProductId()).get();
 
+            // 상품 재고 수정
+            if(product.getAmount() < cartItemViewResponse.getAmount()){    // 수량 부족
+                throw new InsufficientStockException("재고가 부족합니다.");
+            }else{
+                product.update(product.getName(), product.getPrice(), product.getAmount()-cartItemViewResponse.getAmount(), product.getDescription());
+            }
+
             OrderItem orderItem = OrderItem.builder()
                     .order(order)
                     .product(product)
@@ -41,10 +50,12 @@ public class OrderService {
             orderItemRepository.save(orderItem);
 
             totalPrice += product.getPrice() * orderItem.getAmount();
+
         }
         order.setTotal_price(totalPrice);
 
         cartItemRepository.deleteAllByUser(user.getId());
+
         return order;
     }
 }

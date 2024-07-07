@@ -31,6 +31,8 @@ public class OrderResponse {
 
     private User user;
 
+    private String message;
+
     public OrderResponse(Order order) {
         this.order_id = order.getOrder_id();
         this.total_price = order.getTotal_price();
@@ -39,5 +41,9 @@ public class OrderResponse {
         this.order_date = order.getOrder_date();
         this.status = order.getStatus();
         this.user = order.getUser();
+    }
+
+    public OrderResponse(String message) {
+        this.message = message;
     }
 }

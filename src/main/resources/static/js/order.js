@@ -1,49 +1,37 @@
-// const orderButton = document.getElementById('order-btn');
-//
-// if (orderButton) {
-//     orderButton.addEventListener("click", (event) => {
-//         fetch("/api/order", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({
-//                 address: document.getElementById('address').value,
-//                 phone_number: document.getElementById('phone_number').value
-//             }),
-//         })
-//             .then(response => {
-//                 if (response.ok) {
-//                     alert('주문 완료.');
-//                     location.replace(`/user/cart`);
-//                 } else {
-//                     alert('주문 실패.');
-//                     location.replace(`/user/cart`);
-//                 }
-//             })
-//             .catch(() => {
-//                 alert('네트워크 오류 또는 서버 문제로 주문을 처리할 수 없습니다.');
-//                 location.replace(`/user/cart`);
-//             });
-//     });
-// }
 const orderButton = document.getElementById('order-btn');
 
-if(orderButton){
-    orderButton.addEventListener("click", (event) =>{
+if (orderButton) {
+    orderButton.addEventListener("click", (event) => {
+        event.preventDefault(); // 기본 동작 중지
 
-        fetch("/api/order",{
-            method : "POST",
-            headers : {
-                "Content-Type" : "application/json",
+        const address = document.getElementById('address').value;
+        const phoneNumber = document.getElementById('phone_number').value;
+
+        const formData = {
+            address: address,
+            phone_number: phoneNumber
+        };
+
+        fetch("/api/order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
             },
-            body : JSON.stringify({
-                address: document.getElementById('address').value,
-                phone_number: document.getElementById('phone_number').value
-            }),
-        }).then(() => {
-            alert('장바구니에 담았습니다.');
-            location.replace(`/products`);
-        });
+            body: JSON.stringify(formData),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('서버 오류가 발생했습니다.'); // 서버 오류 메시지를 throw
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('주문이 성공적으로 완료되었습니다.');
+                location.replace('/products');
+            })
+            .catch(error => {
+                alert('재고가 부족합니다.');
+                location.replace('/products');
+            });
     });
 }

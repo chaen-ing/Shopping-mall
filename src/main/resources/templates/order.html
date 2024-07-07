@@ -26,7 +26,6 @@
                 <th scope="col">가격</th>
                 <th scope="col">수량</th>
                 <th scope="col">총 가격</th>
-                <th scope="col">삭제</th>
             </tr>
             </thead>
             <tbody>
@@ -37,9 +36,6 @@
                     <td th:text="${item.productPrice}">가격</td>
                     <td th:text="${item.amount}">수량</td>
                     <td th:text="${item.productPrice * item.amount}">총 가격</td>
-                    <td>
-                        <button type="button" th:attr="data-id=${item.cartItemId}" class="btn btn-danger delete-btn">Delete</button>
-                    </td>
                 </tr>
             </cart>
             </tbody>

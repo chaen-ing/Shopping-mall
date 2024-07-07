@@ -11,6 +11,7 @@ import project.shoppingmall.domain.dto.*;
 import project.shoppingmall.domain.entity.CartItem;
 import project.shoppingmall.domain.entity.Order;
 import project.shoppingmall.domain.entity.Product;
+import project.shoppingmall.exception.InsufficientStockException;
 
 import java.security.Principal;
 
@@ -21,26 +22,15 @@ public class OrderApiController {
 
     @PostMapping("/api/order")
     public ResponseEntity<OrderResponse> createOrder(@RequestBody CreateOrderRequest request, Principal principal){
-       Order savedOrder = orderService.createOrder(request, principal.getName());
 
-       return ResponseEntity.status(HttpStatus.CREATED)
-               .body(new OrderResponse(savedOrder));
+        try {
+            Order savedOrder = orderService.createOrder(request, principal.getName());
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(new OrderResponse(savedOrder));
+        } catch (InsufficientStockException e) {
+            // 예외 발생 시 처리할 내용
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new OrderResponse("재고가 부족합니다. 주문을 처리할 수 없습니다."));
+        }
     }
-
-//    public ResponseEntity<Product> addProduct(@RequestBody AddProductRequest addProductRequest){
-//        Product savedProduct = productService.save(addProductRequest);
-//
-//        return ResponseEntity.status(HttpStatus.CREATED)
-//                .body(savedProduct);
-//    }
-
-//    @PostMapping("/api/cart")
-//    public ResponseEntity<CartItemResponse> addCartItem(@RequestBody AddCartItemRequest request, Principal principal){
-//        CartItem savedCartItem = cartService.addCartItem(request, principal.getName());
-//
-//        return ResponseEntity.status(HttpStatus.CREATED)
-//                .body(new CartItemResponse(savedCartItem));
-//
-//    }
-
 }
