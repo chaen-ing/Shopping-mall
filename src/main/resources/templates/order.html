@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>주문하기</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script>
+        function showAlert() {
+            alert("상품들이 장바구니에 담겼습니다");
+            window.location.href = '/products';
+        }
+    </script>
 </head>
 <body>
 <div th:replace="~{header :: fragment}"></div>
@@ -41,6 +47,7 @@
             </tbody>
         </table>
         <button id="order-btn" type="submit" class="btn btn-primary">주문하기</button>
+        <button type="button" class="btn btn-primary" onclick="showAlert()">취소</button>
     </form>
 </div>
 <script src="/js/order.js"></script>

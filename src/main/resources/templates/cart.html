@@ -9,6 +9,7 @@
 <div th:replace="~{header :: fragment}"></div>
 <div class="container">
   <h2>장바구니</h2>
+  <cart>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -20,7 +21,6 @@
     </tr>
     </thead>
     <tbody>
-    <cart>
     <tr th:each="item : ${cartItems}">
       <input type="hidden" id="product-id" th:value="${item.cartItemId}">
       <td th:text="${item.productName}">상품 이름</td>
@@ -31,10 +31,13 @@
          <button type="button" th:attr="data-id=${item.cartItemId}" class="btn btn-danger delete-btn">Delete</button>
       </td>
     </tr>
-    </cart>
     </tbody>
   </table>
-  <a href="/order" th:href="@{/user/new-order}" class="btn btn-primary">주문하기</a>
+    <p class="fs-5 mb-4" th:text="'총 가격  : ' + ${totalPrice}"></p>
+    <div th:if="${totalPrice > 0}">
+      <a href="/order" th:href="@{/user/new-order}" class="btn btn-primary">주문하기</a>
+    </div>
+  </cart>
 </div>
 <script src = "/js/cart.js"></script>
 </body>

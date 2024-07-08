@@ -31,9 +31,9 @@ public class CartViewController {
         List<CartItemViewResponse> cartItems = cartService.findByUser(principal.getName()).stream()
                 .map(CartItemViewResponse::new)
                 .toList();
+        int totalPrice = cartItems.stream().mapToInt(item -> Math.toIntExact(item.getProductPrice() * item.getAmount())).sum();
         model.addAttribute("cartItems",cartItems);
-
-        model.addAttribute("isLoggedIn", principal != null);
+        model.addAttribute("totalPrice", totalPrice);
 
         return "cart";   // 뷰 반환
     }
