@@ -52,3 +52,24 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('Delete buttons initialized:', deleteButtons.length);  // 초기화 확인 메시지
 });
 
+// 상품에서 바로 주문하기
+const orderButton = document.getElementById('order-btn');
+
+if(orderButton){
+    orderButton.addEventListener("click", (event) =>{
+        let productId = document.getElementById('product-id').value;
+
+        fetch("/api/cart",{
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json",
+            },
+            body : JSON.stringify({
+                productId: productId,
+                amount: document.getElementById('amount').value
+            }),
+        }).then(() => {
+            location.replace(`/user/new-order`);
+        });
+    });
+}
