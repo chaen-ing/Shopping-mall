@@ -35,5 +35,30 @@
 
 
 ## 🖥️ 화면 구성
+<img width="500" height="350" alt="스크린샷 2024-07-13 오후 4 26 48" src="https://github.com/user-attachments/assets/0a47027b-587d-424f-b802-07d770ff67d4"><img width="500" height="350" alt="스크린샷 2024-07-13 오후 4 27 14" src="https://github.com/user-attachments/assets/5d5870a3-a32d-494b-aa2b-1f687f8d77d4">
+
+회원가입 및 로그인 화면입니다
+
+<img width="500" height="350" alt="스크린샷 2024-07-13 오후 4 28 46" src="https://github.com/user-attachments/assets/33444eb6-1e48-44f3-918d-451462d71c04"> <img width="500" height="350" alt="스크린샷 2024-07-13 오후 4 29 28" src="https://github.com/user-attachments/assets/31b685e4-4655-433c-b9f5-8b04dd8a2f8e">
+
+상품 목록을 볼 수 있는 메인 화면과 상품 상세 화면입니다
+
+사용자가 갖고 있는 권한(인증 x, user, admin)에 따라 보여지는 화면이 다릅니다
+
+<img width="600" alt="스크린샷 2024-07-13 오후 4 29 05" src="https://github.com/user-attachments/assets/d583788f-feb2-4db9-83a4-cb5b2547a8e9">
+
+상품 등록 화면입니다
+
+<img width="600" alt="스크린샷 2024-07-13 오후 4 29 42" src="https://github.com/user-attachments/assets/fceaccd9-17bd-4167-baf1-2063878f0415">
+
+장바구니 화면입니다
+
+<img width="600" alt="스크린샷 2024-07-13 오후 4 29 49" src="https://github.com/user-attachments/assets/57da3744-0030-4849-973a-6f8bc6e9813b">
+
+주문서 작성 화면입니다
+
+<img width="400" height="350" alt="스크린샷 2024-07-13 오후 4 30 04" src="https://github.com/user-attachments/assets/1a03f493-d9b6-4a04-a29a-e40984fa1ee3"> <img width="400" height="350" alt="스크린샷 2024-07-13 오후 4 30 14" src="https://github.com/user-attachments/assets/f180ea44-0713-42dc-a398-90de1621c0d0">
+
+회원 정보를 볼 수 있는 화면과 수정 페이지입니다
 
 
