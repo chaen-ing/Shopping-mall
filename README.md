@@ -23,17 +23,17 @@
 
 
 
-## 2. ERD
+## 🗂️ ERD
 
 ![shoppingmall-2](https://github.com/user-attachments/assets/082138ba-6f1f-4305-a9e1-0f4297c60d75)
 
 
-## 3. 기능 명세서
+## 📚 기능 명세서
 
 <img width="697" alt="스크린샷 2024-07-13 오후 3 38 52" src="https://github.com/user-attachments/assets/88bf3832-b9d5-40da-bc33-74218f5e62ec">
 <img width="693" alt="스크린샷 2024-07-13 오후 3 39 19" src="https://github.com/user-attachments/assets/31eb49c8-096d-46b1-bc9b-7e79bc83b91c">
 
 
-## 4. 화면 구성
+## 🖥️ 화면 구성
 
 
